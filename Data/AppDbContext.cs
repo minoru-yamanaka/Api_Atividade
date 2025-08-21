@@ -8,6 +8,6 @@ namespace MinhaAPI.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<Produto> Produtos { get; set; }
-        public object Servico { get; internal set; }
+        public DbSet<Servico> Servico { get;  set; }
     }
 }

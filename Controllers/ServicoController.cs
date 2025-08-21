@@ -21,7 +21,7 @@ namespace MinhaAPI.Controllers
         public async Task<ActionResult<IEnumerable<Servico>>> GetAll()
         {
             // CORREÇÃO: Buscando da tabela de Serviços (Servico) e usando uma variável com nome correto.
-            var servicos = await _contextDb.Servico.ToLoistAsync();
+            var servicos = await _contextDb.Servico.ToListAsync();
             
 
             return Ok(servicos);
