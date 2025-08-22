@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace MinhaAPI.Models
 {
@@ -31,6 +32,7 @@ namespace MinhaAPI.Models
         
         public int ClienteId { get; set; } // Chave estrangeira para Cliente
 
+        [JsonIgnore]
         public Cliente? Cliente { get; set; } // Navegação para Cliente
         
     }
