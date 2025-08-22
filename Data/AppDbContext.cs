@@ -9,5 +9,8 @@ namespace MinhaAPI.Data
 
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Servico> Servico { get;  set; }
+        public DbSet<Endereco> Endereco { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+        
     }
 }
