@@ -10,6 +10,11 @@ namespace MinhaAPI.Models
         [Required(ErrorMessage = "O nome é obrigatório")]
         public string Nome { get; set; } = string.Empty;
 
+        [StringLength(100, ErrorMessage = "O nome deve ter no máximo 100 caracteres")]
+        [Required(ErrorMessage = "O nome é obrigatório")]
+        public string SobreNome { get; set; } = string.Empty;
+
+
         [StringLength(100, ErrorMessage = "O email deve ter no máximo 100 caracteres")]
         [Required(ErrorMessage = "O email é obrigatório")]
         public string Email { get; set; } = string.Empty;
@@ -23,6 +28,7 @@ namespace MinhaAPI.Models
         public string Telefone { get; set; } = string.Empty;
 
         public List<Endereco> Enderecos { get; set; } = new List<Endereco>();
+
 
 
 

@@ -5,7 +5,7 @@
 namespace MinhaAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class RelacionamentoEntidades : Migration
+    public partial class start : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -69,6 +69,7 @@ namespace MinhaAPI.Migrations
                     Estado = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CEP = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
                     Numero = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TipoEndereco = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Complemento = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClienteId = table.Column<int>(type: "int", nullable: false)
                 },

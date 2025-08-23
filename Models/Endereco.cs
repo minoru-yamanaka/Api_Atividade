@@ -27,7 +27,8 @@ namespace MinhaAPI.Models
         [Required(ErrorMessage = "O Numero é obrigatório")]
         public string Numero { get; set; }
 
-        
+        public string? TipoEndereco { get; set; }
+
         public string? Complemento { get; set; }
         
         public int ClienteId { get; set; } // Chave estrangeira para Cliente

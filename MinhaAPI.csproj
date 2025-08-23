@@ -8,9 +8,6 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\Servico.cs" />
-    <Compile Remove="Migrations\20250816010221_InicioAplicacao.cs" />
-    <Compile Remove="Migrations\20250816010221_InicioAplicacao.Designer.cs" />
-    <Compile Remove="Migrations\AppDbContextModelSnapshot.cs" />
     <Compile Remove="Models\Class.cs" />
     <Compile Remove="Models\Servicos.cs" />
   </ItemGroup>
@@ -24,10 +21,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

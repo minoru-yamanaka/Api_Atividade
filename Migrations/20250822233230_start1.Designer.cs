@@ -11,8 +11,8 @@ using MinhaAPI.Data;
 namespace MinhaAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250822002916_RelacionamentoEntidades")]
-    partial class RelacionamentoEntidades
+    [Migration("20250822233230_start1")]
+    partial class start1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,6 +43,11 @@ namespace MinhaAPI.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("SobreNome")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -94,6 +99,9 @@ namespace MinhaAPI.Migrations
 
                     b.Property<string>("Numero")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TipoEndereco")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -160,13 +168,13 @@ namespace MinhaAPI.Migrations
 
             modelBuilder.Entity("MinhaAPI.Models.Endereco", b =>
                 {
-                    b.HasOne("MinhaAPI.Models.Cliente", "Clientes")
+                    b.HasOne("MinhaAPI.Models.Cliente", "Cliente")
                         .WithMany("Enderecos")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Clientes");
+                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("MinhaAPI.Models.Cliente", b =>
