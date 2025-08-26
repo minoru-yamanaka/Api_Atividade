@@ -29,9 +29,6 @@ namespace MinhaAPI.Models
 
         public List<Endereco> Enderecos { get; set; } = new List<Endereco>();
 
-
-
-
-
+        
     }
 }

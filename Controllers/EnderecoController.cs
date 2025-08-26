@@ -1,76 +1,53 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using MinhaAPI.Data;
 using MinhaAPI.Models;
 
 namespace MinhaAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class EnderecoController : ControllerBase
     {
-        private readonly AppDbContext _appDbContext;
 
-        public EnderecoController(AppDbContext appContext)
+        private readonly AppDbContext _contextDb;
+
+        public EnderecoController(AppDbContext contextDb)
         {
-            _appDbContext = appContext;
+
+            _contextDb = contextDb;
         }
-
-        //[HttpGet]
-        //public async Task<IActionResult> GetAll()
-        //{
-        //    // Se Endereco tem relação com Cliente
-        //    var enderecos = await _appDbContext.Endereco
-        //        .Include(e => e.Cliente) // <-- ajuste aqui
-        //        .ToListAsync();
-
-        //    return Ok(enderecos);
-        //}
-
-        // Puxar endereços de um cliente específico
-        // GET http://localhost:5215/api/endereco/cliente/1
-        [HttpGet("cliente/{clienteId}")]
-        public async Task<IActionResult> GetByCliente(int clienteId)
-        {
-            var enderecos = await _appDbContext.Endereco
-                .Where(e => e.ClienteId == clienteId)
-                .ToListAsync();
-
-            if (!enderecos.Any())
-                return NotFound("Nenhum endereço encontrado para este cliente.");
-
-            return Ok(enderecos);
-        }
-
-        // Puxar um endereço específico por Id
-        // GET http://localhost:5215/api/endereco/3
-        [HttpGet("{id}")]
-        //public async Task<IActionResult> GetById(int id)
-        //{
-        //    var endereco = await _appDbContext.Endereco
-        //        .Include(e => e.Cliente)
-        //        .FirstOrDefaultAsync(e => e.Id == id);
-
-        //    if (endereco == null)
-        //        return NotFound("Endereço não encontrado.");
-
-        //    return Ok(endereco);
-        //}
 
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] Endereco endereco)
-        {
+        public async Task<ActionResult> EnderecoCreate([FromBody] Endereco endereco) {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _appDbContext.Endereco.Add(endereco);
-            await _appDbContext.SaveChangesAsync();
+            _contextDb.Endereco.Add(endereco);
+            await _contextDb.SaveChangesAsync();
 
-            return Ok("Endereço criado com sucesso!");
-            return CreatedAtAction(nameof(GetByCliente), new { id = endereco.Id }, endereco);
+            return Ok("Endereco criado com sucesso!");
 
         }
-    }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteEndereco(int id) {
+            Endereco? endereco = await _contextDb.Endereco.FindAsync(id);
+
+            if (endereco == null)
+            {
+                return NotFound("Endereco mão encontrado");  
+            }
+
+            _contextDb.Endereco.Remove(endereco);
+            await _contextDb.SaveChangesAsync();
+
+
+            return Ok("Endereco mão encontrado");
+
+        }
+    }   
 }
